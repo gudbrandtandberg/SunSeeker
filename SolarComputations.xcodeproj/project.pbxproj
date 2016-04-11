@@ -7,9 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4244C6361CB9408C00FB39FF /* PointList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4244C6351CB9408C00FB39FF /* PointList.swift */; };
 		42AF26BF1BB6A40000E87B1D /* SolarComputations.h in Headers */ = {isa = PBXBuildFile; fileRef = 42AF26BE1BB6A40000E87B1D /* SolarComputations.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		42AF26C51BB6A40000E87B1D /* SolarComputations.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42AF26B91BB6A40000E87B1D /* SolarComputations.framework */; };
 		42AF26CC1BB6A40000E87B1D /* SolarComputationsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42AF26CB1BB6A40000E87B1D /* SolarComputationsTests.swift */; };
+		42AF26D91BB6A42000E87B1D /* Angle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42AF26D51BB6A42000E87B1D /* Angle.swift */; };
+		42AF26DA1BB6A42000E87B1D /* FractionalDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42AF26D61BB6A42000E87B1D /* FractionalDay.swift */; };
+		42AF26DB1BB6A42000E87B1D /* JulianDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42AF26D71BB6A42000E87B1D /* JulianDate.swift */; };
+		42AF26DC1BB6A42000E87B1D /* SunPositionCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42AF26D81BB6A42000E87B1D /* SunPositionCalculator.swift */; };
+		42AF26F91BB6AC1D00E87B1D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42AF26F81BB6AC1D00E87B1D /* UIKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -23,12 +29,18 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4244C6351CB9408C00FB39FF /* PointList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointList.swift; sourceTree = "<group>"; };
 		42AF26B91BB6A40000E87B1D /* SolarComputations.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SolarComputations.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		42AF26BD1BB6A40000E87B1D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		42AF26BE1BB6A40000E87B1D /* SolarComputations.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SolarComputations.h; sourceTree = "<group>"; };
 		42AF26C41BB6A40000E87B1D /* SolarComputationsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SolarComputationsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		42AF26CA1BB6A40000E87B1D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		42AF26CB1BB6A40000E87B1D /* SolarComputationsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolarComputationsTests.swift; sourceTree = "<group>"; };
+		42AF26D51BB6A42000E87B1D /* Angle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Angle.swift; path = SolarComputations/Angle.swift; sourceTree = "<group>"; };
+		42AF26D61BB6A42000E87B1D /* FractionalDay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FractionalDay.swift; path = SolarComputations/FractionalDay.swift; sourceTree = "<group>"; };
+		42AF26D71BB6A42000E87B1D /* JulianDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JulianDate.swift; path = SolarComputations/JulianDate.swift; sourceTree = "<group>"; };
+		42AF26D81BB6A42000E87B1D /* SunPositionCalculator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SunPositionCalculator.swift; path = SolarComputations/SunPositionCalculator.swift; sourceTree = "<group>"; };
+		42AF26F81BB6AC1D00E87B1D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -36,6 +48,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				42AF26F91BB6AC1D00E87B1D /* UIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -53,6 +66,8 @@
 		42AF26AF1BB6A40000E87B1D = {
 			isa = PBXGroup;
 			children = (
+				42AF26F81BB6AC1D00E87B1D /* UIKit.framework */,
+				42CC3EF61CBA48B2008CFEDA /* Solar Computations */,
 				42AF26BB1BB6A40000E87B1D /* SolarComputations */,
 				42AF26C81BB6A40000E87B1D /* SolarComputationsTests */,
 				42AF26BA1BB6A40000E87B1D /* Products */,
@@ -100,6 +115,18 @@
 				42AF26CA1BB6A40000E87B1D /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		42CC3EF61CBA48B2008CFEDA /* Solar Computations */ = {
+			isa = PBXGroup;
+			children = (
+				42AF26D51BB6A42000E87B1D /* Angle.swift */,
+				4244C6351CB9408C00FB39FF /* PointList.swift */,
+				42AF26D71BB6A42000E87B1D /* JulianDate.swift */,
+				42AF26D81BB6A42000E87B1D /* SunPositionCalculator.swift */,
+				42AF26D61BB6A42000E87B1D /* FractionalDay.swift */,
+			);
+			name = "Solar Computations";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -175,6 +202,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = 42AF26AF1BB6A40000E87B1D;
 			productRefGroup = 42AF26BA1BB6A40000E87B1D /* Products */;
@@ -209,6 +237,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				42AF26D91BB6A42000E87B1D /* Angle.swift in Sources */,
+				4244C6361CB9408C00FB39FF /* PointList.swift in Sources */,
+				42AF26DB1BB6A42000E87B1D /* JulianDate.swift in Sources */,
+				42AF26DA1BB6A42000E87B1D /* FractionalDay.swift in Sources */,
+				42AF26DC1BB6A42000E87B1D /* SunPositionCalculator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -323,6 +356,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = SolarComputations/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -338,6 +375,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = SolarComputations/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -395,6 +436,7 @@
 				42AF26D11BB6A40100E87B1D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		42AF26D21BB6A40100E87B1D /* Build configuration list for PBXNativeTarget "SolarComputationsTests" */ = {
 			isa = XCConfigurationList;
@@ -403,6 +445,7 @@
 				42AF26D41BB6A40100E87B1D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

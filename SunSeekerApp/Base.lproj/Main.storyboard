@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="13F1712" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--Solar Day View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="SolarDayViewController" customModule="SunSeekerApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="DATE PLACEHOLDER" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="61Y-bK-PfB">
+                                <rect key="frame" x="16" y="20" width="568" height="69"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
+                                <color key="textColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GmS-cV-ubs">
+                                <rect key="frame" x="16" y="97" width="568" height="379"/>
+                                <color key="backgroundColor" red="0.0" green="0.80784313729999724" blue="0.98039215690000003" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.52941176470588236" green="0.80784313725490198" blue="0.98039215686274506" alpha="1" colorSpace="calibratedRGB"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="61Y-bK-PfB" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="66q-3G-FRj"/>
+                            <constraint firstItem="GmS-cV-ubs" firstAttribute="leading" secondItem="61Y-bK-PfB" secondAttribute="leading" id="BPI-Fw-Qjd"/>
+                            <constraint firstAttribute="bottom" secondItem="GmS-cV-ubs" secondAttribute="bottom" constant="124" id="Bor-q5-cdE"/>
+                            <constraint firstItem="GmS-cV-ubs" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="JCc-xg-29T"/>
+                            <constraint firstItem="GmS-cV-ubs" firstAttribute="top" secondItem="61Y-bK-PfB" secondAttribute="bottom" constant="8" symbolic="YES" id="a9Y-dD-ciP"/>
+                            <constraint firstItem="61Y-bK-PfB" firstAttribute="trailing" secondItem="GmS-cV-ubs" secondAttribute="trailing" id="d8o-5D-DeD"/>
+                            <constraint firstItem="61Y-bK-PfB" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="yL6-d5-hAS"/>
+                        </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="rBI-dX-xk1" appends="YES" id="A5N-eR-DhK"/>
+                        </connections>
+                    </view>
+                    <connections>
+                        <outlet property="dateTitleLabel" destination="61Y-bK-PfB" id="xDW-qF-rsP"/>
+                        <outlet property="sunSpaceView" destination="GmS-cV-ubs" id="0N8-Zj-SUP"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="rBI-dX-xk1">
+                    <connections>
+                        <action selector="pan:" destination="BYZ-38-t0r" id="Ue7-Zh-bi1"/>
+                    </connections>
+                </panGestureRecognizer>
+            </objects>
+        </scene>
+    </scenes>
+</document>
