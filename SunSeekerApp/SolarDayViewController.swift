@@ -9,6 +9,9 @@
 import UIKit
 import CoreLocation
 
+let SUNSIZE : CGFloat = 70.0
+
+
 /*
 * specs:
 * x-location of finger in view determines position of ball along a Bezier
@@ -22,6 +25,7 @@ class SolarDayViewController: UIViewController, UIGestureRecognizerDelegate {
 	@IBOutlet weak var dateTitleLabel: UILabel!
 
 	@IBOutlet weak var sunSpaceView: UIView!
+	@IBOutlet weak var grassView: UIView!
 	
 	let sunView = UIImageView(image: UIImage(named: "sun.png"))
 	let yellow = UIColor(red: 0.0, green: 1.0, blue: 1.0, alpha: 1.0)
@@ -75,17 +79,34 @@ class SolarDayViewController: UIViewController, UIGestureRecognizerDelegate {
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		
 		dateTitleLabel.text = dateFormatter.stringFromDate(dateToDisplay) //simpler
-		rect = sunSpaceView.frame
-		pl = generateSinePointListWithFrame(rect) //needs to know the view!
+	}
+	
+	//	LÆREPENGE:
+	//	You should not initialise UI geometry-related things in viewDidLoad,
+	//	because the geometry of your view is not set at this point and the results will be unpredictable
+	
+	override func viewDidLayoutSubviews() {
+		
+		//should instead map data from pl to sunSpace rect
+		//then add the sun and the path of the sun
+		
+		pl = generateSinePointList()
 		
 		//only if path exists!
 		drawPath()
-		sunView.frame.size = CGSizeMake(50.0, 50.0)
-		sunView.center = pl[0] //pl[t_now]!
-		self.view.addSubview(sunView)
+//		sunView.center = pl[0] //pl[t_now]!
+		sunView.frame.size = CGSizeMake(SUNSIZE, SUNSIZE)
 		
+		grassView.layer.zPosition = 2
+		sunSpaceView.layer.zPosition = 0
+		sunView.layer.zPosition = 1
+		
+		xPositionOfSun = pl[0].x
+		
+		self.view.addSubview(sunView)
+
+
 	}
 	
 	func drawPath() {
@@ -96,54 +117,35 @@ class SolarDayViewController: UIViewController, UIGestureRecognizerDelegate {
 		l.strokeColor = yellow.CGColor
 		l.lineWidth = 7.0
 		l.lineCap = kCALineCapRound
+		l.zPosition = 0.5
 		
 		self.view.layer.addSublayer(l)
 
 	}
 	
-// (0 180) -> (y, y + h)
-//	
-// (-180, 180) -> (x, x + w)   //x
-
-// formula
-//	(a, b) to (d, c)
-//	f(x) = (x-a)/(b-a) * c + (x-b)/(a-b) * d
-	
-	func mapFromGeoToSunSpace(point : CGPoint, rectangle : CGRect) -> CGPoint {
-		
-		println(rectangle.origin.x)
-		var x_min : CGFloat = rectangle.origin.x
-		var w = rectangle.size.width
-		var x_new = mapFromabTocd(point.x, a: -180.0, b: 180.0, c: x_min, d: (x_min + w))
-
-		let y_min = rectangle.origin.y
-		let h = rectangle.size.height
-		let y_new = mapFromabTocd(point.y, a: 0.0, b: 180.0, c: y_min, d: (y_min + h))
-		
-		return CGPointMake(x_new, y_new)
+	func flipY(point : CGPoint, axisHeight: CGFloat) -> CGPoint {
+		//flips y-coordinate from (0, axisHeight) to (axisHeight, 0)
+		return CGPointMake(point.x, axisHeight - point.y)
 	}
 	
-	func mapFromabTocd(value : CGFloat, a : CGFloat, b: CGFloat, c : CGFloat, d : CGFloat) -> CGFloat {
+	func generateSinePointList() -> PointList {
 		
-		var firstPart = (value-a)/(b-a)*c
-		var secondPart = (value-b)/(a-b) * d
-
-		return CGFloat(firstPart + secondPart)
-		
-	}
-	
-	func generateSinePointListWithFrame(rect : CGRect) -> PointList {
+		let toRect = sunSpaceView.frame
 		
 		var pl = PointList()
 		var i : Int
 		
-		let x0 = CGFloat(-180.0)
-		let w = CGFloat(360.0)
+		//-90*sin((pi*(x - 180)/360))
+		//example values..
+		let x0 = CGFloat(0.0)
+		let w = CGFloat(180.0)
 		let xn = CGFloat(180.0)
 
-		let yn = CGFloat(0)      //flipped y-axis!?
-		let h = CGFloat(180.0)
-		let y0 = CGFloat(180.0)
+		let y0 = CGFloat(0.0)
+		let h = CGFloat(90.0)
+		let yn = CGFloat(90.0)
+		
+		let fromRect = CGRectMake(x0, y0, w, h)
 		
 		let numPoints = 12 * 60 //onc sample a minute
 		
@@ -152,15 +154,29 @@ class SolarDayViewController: UIViewController, UIGestureRecognizerDelegate {
 		for i in 1...numPoints {
 		
 			var x = x0 + CGFloat(i-1) * dx
-			let arg = 2.0 * CGFloat(M_PI) * x / (2 * w)
-			let y = y0 - h * sin(arg)
+			let arg = CGFloat(M_PI) * x / w
+			let y = h * sin(arg)
 			
-			let newPointInGeoSpace = CGPointMake(x, y)
+			let newPoint = CGPointMake(x, y)
 			
-			pl.addPoint(mapFromGeoToSunSpace(newPointInGeoSpace, rectangle: rect))
+			pl.addPoint(gmap(flipY(newPoint, axisHeight: h), fromRect: fromRect, toRect: toRect))
 		}
-
+		
 		return pl
+	}
+	
+	func mapFromabTocd(val : CGFloat, a : CGFloat, b: CGFloat, c : CGFloat, d : CGFloat) -> CGFloat {
+		return (val-a)*(d-c)/(b-a) + c
+		
+	}
+	
+	func gmap(point : CGPoint, fromRect : CGRect, toRect : CGRect) -> CGPoint {
+		
+		var x : CGFloat = mapFromabTocd(point.x, a: fromRect.origin.x, b: fromRect.origin.x + fromRect.size.width, c: toRect.origin.x, d: toRect.origin.x + toRect.size.width)
+		
+		var y = mapFromabTocd(point.y, a: fromRect.origin.y, b: fromRect.origin.y + fromRect.size.height, c: toRect.origin.y, d: toRect.origin.y + toRect.size.height)
+		
+		return CGPointMake(x, y);
 	}
 	
 	func moveSun(toXValue : CGFloat) {

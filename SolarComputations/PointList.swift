@@ -24,12 +24,8 @@ struct PointList {
 	mutating func addPoint(p: CGPoint) {
 		
 		self.points.append(p)
-		
-		if count == 0 {
-			bezierPath.moveToPoint(p)
-		} else {
-			bezierPath.addLineToPoint(p)
-		}
+		(count == 0) ? bezierPath.moveToPoint(p) : bezierPath.addLineToPoint(p)
+
 		self.count++
 	}
 	
@@ -48,11 +44,11 @@ struct PointList {
 		return points[index]
 	}
 	
-	func toUIBezierPath() -> UIBezierPath {
-		return bezierPath
-	}
+//	func toUIBezierPath() -> UIBezierPath {
+//		return bezierPath
+//	}
 	
-	subscript(index: Int) -> CGPoint {
+	subscript(index: Int) -> CGPoint { //should check bounds?
 		get {
 			return points[index]
 		}

@@ -1,0 +1,502 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		4244C5F01CB8F16C00FB39FF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4244C5EF1CB8F16C00FB39FF /* AppDelegate.swift */; };
+		4244C5F21CB8F16C00FB39FF /* SolarDayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4244C5F11CB8F16C00FB39FF /* SolarDayViewController.swift */; };
+		4244C5F51CB8F16C00FB39FF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4244C5F31CB8F16C00FB39FF /* Main.storyboard */; };
+		4244C5F71CB8F16C00FB39FF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4244C5F61CB8F16C00FB39FF /* Images.xcassets */; };
+		4244C5FA1CB8F16C00FB39FF /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4244C5F81CB8F16C00FB39FF /* LaunchScreen.xib */; };
+		4244C6061CB8F16C00FB39FF /* SunSeekerAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4244C6051CB8F16C00FB39FF /* SunSeekerAppTests.swift */; };
+		4244C62E1CB9059500FB39FF /* sun.png in Resources */ = {isa = PBXBuildFile; fileRef = 4244C62D1CB9059400FB39FF /* sun.png */; };
+		42B961F71CBCFCBE00E7413B /* PointList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42B961F61CBCFCBE00E7413B /* PointList.swift */; };
+		42CC3EFD1CBA48C5008CFEDA /* Angle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42CC3EF71CBA48C5008CFEDA /* Angle.swift */; };
+		42CC3EFF1CBA48C5008CFEDA /* JulianDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42CC3EF91CBA48C5008CFEDA /* JulianDate.swift */; };
+		42CC3F001CBA48C5008CFEDA /* SunPositionCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42CC3EFA1CBA48C5008CFEDA /* SunPositionCalculator.swift */; };
+		42CC3F011CBA48C5008CFEDA /* FractionalDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42CC3EFB1CBA48C5008CFEDA /* FractionalDay.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		4244C6001CB8F16C00FB39FF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4244C5E21CB8F16C00FB39FF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4244C5E91CB8F16C00FB39FF;
+			remoteInfo = SunSeekerApp;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		4244C5EA1CB8F16C00FB39FF /* SunSeekerApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SunSeekerApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4244C5EE1CB8F16C00FB39FF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4244C5EF1CB8F16C00FB39FF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		4244C5F11CB8F16C00FB39FF /* SolarDayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolarDayViewController.swift; sourceTree = "<group>"; };
+		4244C5F41CB8F16C00FB39FF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		4244C5F61CB8F16C00FB39FF /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = SunSeekerApp/Images.xcassets; sourceTree = "<group>"; };
+		4244C5F91CB8F16C00FB39FF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		4244C5FF1CB8F16C00FB39FF /* SunSeekerAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SunSeekerAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4244C6041CB8F16C00FB39FF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4244C6051CB8F16C00FB39FF /* SunSeekerAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SunSeekerAppTests.swift; sourceTree = "<group>"; };
+		4244C62D1CB9059400FB39FF /* sun.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sun.png; sourceTree = "<group>"; };
+		42B961F61CBCFCBE00E7413B /* PointList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PointList.swift; path = SolarComputations/PointList.swift; sourceTree = "<group>"; };
+		42CC3EF71CBA48C5008CFEDA /* Angle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Angle.swift; path = SolarComputations/Angle.swift; sourceTree = "<group>"; };
+		42CC3EF91CBA48C5008CFEDA /* JulianDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JulianDate.swift; path = SolarComputations/JulianDate.swift; sourceTree = "<group>"; };
+		42CC3EFA1CBA48C5008CFEDA /* SunPositionCalculator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SunPositionCalculator.swift; path = SolarComputations/SunPositionCalculator.swift; sourceTree = "<group>"; };
+		42CC3EFB1CBA48C5008CFEDA /* FractionalDay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FractionalDay.swift; path = SolarComputations/FractionalDay.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		4244C5E71CB8F16C00FB39FF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4244C5FC1CB8F16C00FB39FF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		4244C5E11CB8F16C00FB39FF = {
+			isa = PBXGroup;
+			children = (
+				4244C5EC1CB8F16C00FB39FF /* SunSeekerApp */,
+				4244C6021CB8F16C00FB39FF /* SunSeekerAppTests */,
+				4244C5EB1CB8F16C00FB39FF /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		4244C5EB1CB8F16C00FB39FF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				4244C5EA1CB8F16C00FB39FF /* SunSeekerApp.app */,
+				4244C5FF1CB8F16C00FB39FF /* SunSeekerAppTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		4244C5EC1CB8F16C00FB39FF /* SunSeekerApp */ = {
+			isa = PBXGroup;
+			children = (
+				4244C5EF1CB8F16C00FB39FF /* AppDelegate.swift */,
+				42CC3F041CBA49BF008CFEDA /* ViewControllers */,
+				42CC3F051CBA4B25008CFEDA /* UI */,
+				42CC3EFC1CBA48C5008CFEDA /* Solar Computations */,
+				4244C5ED1CB8F16C00FB39FF /* Supporting Files */,
+			);
+			path = SunSeekerApp;
+			sourceTree = "<group>";
+		};
+		4244C5ED1CB8F16C00FB39FF /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				42CC3F031CBA49AB008CFEDA /* Images */,
+				4244C5EE1CB8F16C00FB39FF /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		4244C6021CB8F16C00FB39FF /* SunSeekerAppTests */ = {
+			isa = PBXGroup;
+			children = (
+				4244C6051CB8F16C00FB39FF /* SunSeekerAppTests.swift */,
+				4244C6031CB8F16C00FB39FF /* Supporting Files */,
+			);
+			path = SunSeekerAppTests;
+			sourceTree = "<group>";
+		};
+		4244C6031CB8F16C00FB39FF /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				4244C6041CB8F16C00FB39FF /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		42CC3EFC1CBA48C5008CFEDA /* Solar Computations */ = {
+			isa = PBXGroup;
+			children = (
+				42CC3EFA1CBA48C5008CFEDA /* SunPositionCalculator.swift */,
+				42CC3F021CBA497E008CFEDA /* Useful Objects */,
+			);
+			name = "Solar Computations";
+			path = ..;
+			sourceTree = "<group>";
+		};
+		42CC3F021CBA497E008CFEDA /* Useful Objects */ = {
+			isa = PBXGroup;
+			children = (
+				42CC3EF71CBA48C5008CFEDA /* Angle.swift */,
+				42B961F61CBCFCBE00E7413B /* PointList.swift */,
+				42CC3EF91CBA48C5008CFEDA /* JulianDate.swift */,
+				42CC3EFB1CBA48C5008CFEDA /* FractionalDay.swift */,
+			);
+			name = "Useful Objects";
+			sourceTree = "<group>";
+		};
+		42CC3F031CBA49AB008CFEDA /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				4244C62D1CB9059400FB39FF /* sun.png */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
+		42CC3F041CBA49BF008CFEDA /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				4244C5F11CB8F16C00FB39FF /* SolarDayViewController.swift */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		42CC3F051CBA4B25008CFEDA /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				4244C5F31CB8F16C00FB39FF /* Main.storyboard */,
+				4244C5F61CB8F16C00FB39FF /* Images.xcassets */,
+				4244C5F81CB8F16C00FB39FF /* LaunchScreen.xib */,
+			);
+			name = UI;
+			path = ..;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		4244C5E91CB8F16C00FB39FF /* SunSeekerApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4244C6091CB8F16C00FB39FF /* Build configuration list for PBXNativeTarget "SunSeekerApp" */;
+			buildPhases = (
+				4244C5E61CB8F16C00FB39FF /* Sources */,
+				4244C5E71CB8F16C00FB39FF /* Frameworks */,
+				4244C5E81CB8F16C00FB39FF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SunSeekerApp;
+			productName = SunSeekerApp;
+			productReference = 4244C5EA1CB8F16C00FB39FF /* SunSeekerApp.app */;
+			productType = "com.apple.product-type.application";
+		};
+		4244C5FE1CB8F16C00FB39FF /* SunSeekerAppTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4244C60C1CB8F16C00FB39FF /* Build configuration list for PBXNativeTarget "SunSeekerAppTests" */;
+			buildPhases = (
+				4244C5FB1CB8F16C00FB39FF /* Sources */,
+				4244C5FC1CB8F16C00FB39FF /* Frameworks */,
+				4244C5FD1CB8F16C00FB39FF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4244C6011CB8F16C00FB39FF /* PBXTargetDependency */,
+			);
+			name = SunSeekerAppTests;
+			productName = SunSeekerAppTests;
+			productReference = 4244C5FF1CB8F16C00FB39FF /* SunSeekerAppTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		4244C5E21CB8F16C00FB39FF /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0620;
+				ORGANIZATIONNAME = "Duff Development";
+				TargetAttributes = {
+					4244C5E91CB8F16C00FB39FF = {
+						CreatedOnToolsVersion = 6.2;
+					};
+					4244C5FE1CB8F16C00FB39FF = {
+						CreatedOnToolsVersion = 6.2;
+						TestTargetID = 4244C5E91CB8F16C00FB39FF;
+					};
+				};
+			};
+			buildConfigurationList = 4244C5E51CB8F16C00FB39FF /* Build configuration list for PBXProject "SunSeekerApp" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 4244C5E11CB8F16C00FB39FF;
+			productRefGroup = 4244C5EB1CB8F16C00FB39FF /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				4244C5E91CB8F16C00FB39FF /* SunSeekerApp */,
+				4244C5FE1CB8F16C00FB39FF /* SunSeekerAppTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		4244C5E81CB8F16C00FB39FF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4244C62E1CB9059500FB39FF /* sun.png in Resources */,
+				4244C5F51CB8F16C00FB39FF /* Main.storyboard in Resources */,
+				4244C5FA1CB8F16C00FB39FF /* LaunchScreen.xib in Resources */,
+				4244C5F71CB8F16C00FB39FF /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4244C5FD1CB8F16C00FB39FF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		4244C5E61CB8F16C00FB39FF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				42B961F71CBCFCBE00E7413B /* PointList.swift in Sources */,
+				4244C5F21CB8F16C00FB39FF /* SolarDayViewController.swift in Sources */,
+				42CC3EFD1CBA48C5008CFEDA /* Angle.swift in Sources */,
+				4244C5F01CB8F16C00FB39FF /* AppDelegate.swift in Sources */,
+				42CC3EFF1CBA48C5008CFEDA /* JulianDate.swift in Sources */,
+				42CC3F001CBA48C5008CFEDA /* SunPositionCalculator.swift in Sources */,
+				42CC3F011CBA48C5008CFEDA /* FractionalDay.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4244C5FB1CB8F16C00FB39FF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4244C6061CB8F16C00FB39FF /* SunSeekerAppTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		4244C6011CB8F16C00FB39FF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4244C5E91CB8F16C00FB39FF /* SunSeekerApp */;
+			targetProxy = 4244C6001CB8F16C00FB39FF /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		4244C5F31CB8F16C00FB39FF /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4244C5F41CB8F16C00FB39FF /* Base */,
+			);
+			name = Main.storyboard;
+			path = SunSeekerApp;
+			sourceTree = "<group>";
+		};
+		4244C5F81CB8F16C00FB39FF /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4244C5F91CB8F16C00FB39FF /* Base */,
+			);
+			name = LaunchScreen.xib;
+			path = SunSeekerApp;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		4244C6071CB8F16C00FB39FF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		4244C6081CB8F16C00FB39FF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		4244C60A1CB8F16C00FB39FF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/SolarComputationsWS-hitavrqnnanmnagxwakxnfjhpajr/Build/Products/Debug-iphoneos",
+					"$(PROJECT_DIR)",
+				);
+				INFOPLIST_FILE = SunSeekerApp/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		4244C60B1CB8F16C00FB39FF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/SolarComputationsWS-hitavrqnnanmnagxwakxnfjhpajr/Build/Products/Debug-iphoneos",
+					"$(PROJECT_DIR)",
+				);
+				INFOPLIST_FILE = SunSeekerApp/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		4244C60D1CB8F16C00FB39FF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = SunSeekerAppTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SunSeekerApp.app/SunSeekerApp";
+			};
+			name = Debug;
+		};
+		4244C60E1CB8F16C00FB39FF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = SunSeekerAppTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SunSeekerApp.app/SunSeekerApp";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4244C5E51CB8F16C00FB39FF /* Build configuration list for PBXProject "SunSeekerApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4244C6071CB8F16C00FB39FF /* Debug */,
+				4244C6081CB8F16C00FB39FF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4244C6091CB8F16C00FB39FF /* Build configuration list for PBXNativeTarget "SunSeekerApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4244C60A1CB8F16C00FB39FF /* Debug */,
+				4244C60B1CB8F16C00FB39FF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4244C60C1CB8F16C00FB39FF /* Build configuration list for PBXNativeTarget "SunSeekerAppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4244C60D1CB8F16C00FB39FF /* Debug */,
+				4244C60E1CB8F16C00FB39FF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 4244C5E21CB8F16C00FB39FF /* Project object */;
+}
