@@ -119,30 +119,6 @@ public class SunLocationCalculator {
 		return (dateFromJulianDate(J_rise), dateFromJulianDate(J_set))
 	}
 	
-	func dateFromJulianDate(jd: Double) -> NSDate {
-		
-		let fractionalDay = jd % 1
-		var JDN = Int(floor(jd))
-		var secondsToCorrect = secondsPerDay / 2
-		
-		if (fractionalDay <= 0.5) { //the JDN floor(jd) is correct
-			secondsToCorrect += fractionalDay * secondsPerDay
-			
-		} else { //the JDN floor(jd) is one day too early
-			JDN += 1
-			secondsToCorrect -= (1 - fractionalDay) * secondsPerDay
-		}
-		
-		let JDNString = String(format: "%d", JDN)
-		let formatter = NSDateFormatter()
-		formatter.dateFormat = julianDateFormat
-		
-		var noonOnCorrectDay = formatter.dateFromString(JDNString)!
-		secondsToCorrect += currentTimezoneOffset
-		
-		return noonOnCorrectDay.dateByAddingTimeInterval(secondsToCorrect)
-	}
-	
 	public func getSunPosition(day : JulianDate) -> (Angle, Angle) {
 		
 		
@@ -167,34 +143,6 @@ public class SunLocationCalculator {
 		return (A, h)
 		
 	}
-
-	
-	
-	func generateSinePointListInRect(frame : CGRect) -> PointList {
-		
-		//from (-180 , 180) -> (frame.x, frame.x + frame.w)
-		//from (90 , 0) -> (frame.y - frame.h, frame.y)
-		
-		var pl = PointList()
-		var i : Int
-		
-		for i in -180...180 {
-			
-			let x = CGFloat(i)
-			let arg = 2.0 * CGFloat(M_PI) * x / 1330.0
-			let y = 300.0 - 150.0 * sin(arg)
-			
-			pl.addPoint(CGPointMake(x, y))
-		}
-		
-		return pl
-	}
-	
-	func mapFromEWNStoFrame(frame : CGRect) -> CGPoint {
-
-		return CGPointZero
-	}
-	
 	
 }
 

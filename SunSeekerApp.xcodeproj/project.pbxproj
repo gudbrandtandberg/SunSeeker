@@ -14,7 +14,8 @@
 		4244C5FA1CB8F16C00FB39FF /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4244C5F81CB8F16C00FB39FF /* LaunchScreen.xib */; };
 		4244C6061CB8F16C00FB39FF /* SunSeekerAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4244C6051CB8F16C00FB39FF /* SunSeekerAppTests.swift */; };
 		4244C62E1CB9059500FB39FF /* sun.png in Resources */ = {isa = PBXBuildFile; fileRef = 4244C62D1CB9059400FB39FF /* sun.png */; };
-		42B961F71CBCFCBE00E7413B /* PointList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42B961F61CBCFCBE00E7413B /* PointList.swift */; };
+		42B961F71CBCFCBE00E7413B /* SunTrajectory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42B961F61CBCFCBE00E7413B /* SunTrajectory.swift */; };
+		42B961F91CBDF1A500E7413B /* InfoPaneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42B961F81CBDF1A500E7413B /* InfoPaneView.swift */; };
 		42CC3EFD1CBA48C5008CFEDA /* Angle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42CC3EF71CBA48C5008CFEDA /* Angle.swift */; };
 		42CC3EFF1CBA48C5008CFEDA /* JulianDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42CC3EF91CBA48C5008CFEDA /* JulianDate.swift */; };
 		42CC3F001CBA48C5008CFEDA /* SunPositionCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42CC3EFA1CBA48C5008CFEDA /* SunPositionCalculator.swift */; };
@@ -43,7 +44,8 @@
 		4244C6041CB8F16C00FB39FF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4244C6051CB8F16C00FB39FF /* SunSeekerAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SunSeekerAppTests.swift; sourceTree = "<group>"; };
 		4244C62D1CB9059400FB39FF /* sun.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sun.png; sourceTree = "<group>"; };
-		42B961F61CBCFCBE00E7413B /* PointList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PointList.swift; path = SolarComputations/PointList.swift; sourceTree = "<group>"; };
+		42B961F61CBCFCBE00E7413B /* SunTrajectory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SunTrajectory.swift; path = SolarComputations/SunTrajectory.swift; sourceTree = "<group>"; };
+		42B961F81CBDF1A500E7413B /* InfoPaneView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InfoPaneView.swift; path = ../InfoPaneView.swift; sourceTree = "<group>"; };
 		42CC3EF71CBA48C5008CFEDA /* Angle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Angle.swift; path = SolarComputations/Angle.swift; sourceTree = "<group>"; };
 		42CC3EF91CBA48C5008CFEDA /* JulianDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JulianDate.swift; path = SolarComputations/JulianDate.swift; sourceTree = "<group>"; };
 		42CC3EFA1CBA48C5008CFEDA /* SunPositionCalculator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SunPositionCalculator.swift; path = SolarComputations/SunPositionCalculator.swift; sourceTree = "<group>"; };
@@ -90,7 +92,7 @@
 			isa = PBXGroup;
 			children = (
 				4244C5EF1CB8F16C00FB39FF /* AppDelegate.swift */,
-				42CC3F041CBA49BF008CFEDA /* ViewControllers */,
+				42CC3F041CBA49BF008CFEDA /* Views & Controllers */,
 				42CC3F051CBA4B25008CFEDA /* UI */,
 				42CC3EFC1CBA48C5008CFEDA /* Solar Computations */,
 				4244C5ED1CB8F16C00FB39FF /* Supporting Files */,
@@ -138,7 +140,7 @@
 			isa = PBXGroup;
 			children = (
 				42CC3EF71CBA48C5008CFEDA /* Angle.swift */,
-				42B961F61CBCFCBE00E7413B /* PointList.swift */,
+				42B961F61CBCFCBE00E7413B /* SunTrajectory.swift */,
 				42CC3EF91CBA48C5008CFEDA /* JulianDate.swift */,
 				42CC3EFB1CBA48C5008CFEDA /* FractionalDay.swift */,
 			);
@@ -153,12 +155,13 @@
 			name = Images;
 			sourceTree = "<group>";
 		};
-		42CC3F041CBA49BF008CFEDA /* ViewControllers */ = {
+		42CC3F041CBA49BF008CFEDA /* Views & Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				4244C5F11CB8F16C00FB39FF /* SolarDayViewController.swift */,
+				42B961F81CBDF1A500E7413B /* InfoPaneView.swift */,
 			);
-			name = ViewControllers;
+			name = "Views & Controllers";
 			sourceTree = "<group>";
 		};
 		42CC3F051CBA4B25008CFEDA /* UI */ = {
@@ -273,7 +276,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				42B961F71CBCFCBE00E7413B /* PointList.swift in Sources */,
+				42B961F91CBDF1A500E7413B /* InfoPaneView.swift in Sources */,
+				42B961F71CBCFCBE00E7413B /* SunTrajectory.swift in Sources */,
 				4244C5F21CB8F16C00FB39FF /* SolarDayViewController.swift in Sources */,
 				42CC3EFD1CBA48C5008CFEDA /* Angle.swift in Sources */,
 				4244C5F01CB8F16C00FB39FF /* AppDelegate.swift in Sources */,

@@ -10,29 +10,27 @@ import UIKit
 import CoreLocation
 
 let SUNSIZE : CGFloat = 70.0
+let IPANE_WIDTH : CGFloat = 140.0
+let IPANE_HEIGHT : CGFloat = 45.0
 
 
 /*
-* specs:
-* x-location of finger in view determines position of ball along a Bezier
+* Beautifuly displays the trajectory and position of the sun for a given day
 * 
-* routines:
+*
 */
-
 
 class SolarDayViewController: UIViewController, UIGestureRecognizerDelegate {
 
 	@IBOutlet weak var dateTitleLabel: UILabel!
-
 	@IBOutlet weak var sunSpaceView: UIView!
 	@IBOutlet weak var grassView: UIView!
 	
 	let sunView = UIImageView(image: UIImage(named: "sun.png"))
 	let yellow = UIColor(red: 0.0, green: 1.0, blue: 1.0, alpha: 1.0)
+	let infoPane: InfoPaneView
 
-	var rect : CGRect = CGRectZero
-	
-	var pl = PointList()
+	var sunTrajectory = SunTrajectory()
 	var t = [NSDate]()
 	
 	let dateFormatter : NSDateFormatter = NSDateFormatter()
@@ -61,6 +59,8 @@ class SolarDayViewController: UIViewController, UIGestureRecognizerDelegate {
 		dateFormatter.timeStyle = .MediumStyle
 		dateFormatter.locale = NSLocale.currentLocale()
 
+		infoPane = InfoPaneView(frame: CGRectMake(0, 0, IPANE_WIDTH, IPANE_HEIGHT))
+		
 		super.init(coder: aDecoder)
 		
 		//trenger SolarComputer objekt:
@@ -80,6 +80,9 @@ class SolarDayViewController: UIViewController, UIGestureRecognizerDelegate {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		dateTitleLabel.text = dateFormatter.stringFromDate(dateToDisplay) //simpler
+	
+		
+		view.addSubview(infoPane)
 	}
 	
 	//	LÆREPENGE:
@@ -91,7 +94,7 @@ class SolarDayViewController: UIViewController, UIGestureRecognizerDelegate {
 		//should instead map data from pl to sunSpace rect
 		//then add the sun and the path of the sun
 		
-		pl = generateSinePointList()
+		sunTrajectory = generateSinePointList()
 		
 		//only if path exists!
 		drawPath()
@@ -102,9 +105,10 @@ class SolarDayViewController: UIViewController, UIGestureRecognizerDelegate {
 		sunSpaceView.layer.zPosition = 0
 		sunView.layer.zPosition = 1
 		
-		xPositionOfSun = pl[0].x
+		xPositionOfSun = sunTrajectory[0].p.x
 		
 		self.view.addSubview(sunView)
+
 
 
 	}
@@ -112,7 +116,7 @@ class SolarDayViewController: UIViewController, UIGestureRecognizerDelegate {
 	func drawPath() {
 		
 		let l = CAShapeLayer()
-		l.path = pl.bezierPath.CGPath
+		l.path = sunTrajectory.bezierPath.CGPath
 		l.fillColor = UIColor.clearColor().CGColor
 		l.strokeColor = yellow.CGColor
 		l.lineWidth = 7.0
@@ -128,11 +132,15 @@ class SolarDayViewController: UIViewController, UIGestureRecognizerDelegate {
 		return CGPointMake(point.x, axisHeight - point.y)
 	}
 	
-	func generateSinePointList() -> PointList {
+	func generateSinePointList() -> SunTrajectory {
 		
 		let toRect = sunSpaceView.frame
 		
-		var pl = PointList()
+		var trajectory = SunTrajectory()
+		
+		var pl = [CGPoint]()
+		var t = [CGFloat]()
+		
 		var i : Int
 		
 		//-90*sin((pi*(x - 180)/360))
@@ -159,10 +167,10 @@ class SolarDayViewController: UIViewController, UIGestureRecognizerDelegate {
 			
 			let newPoint = CGPointMake(x, y)
 			
-			pl.addPoint(gmap(flipY(newPoint, axisHeight: h), fromRect: fromRect, toRect: toRect))
+			trajectory.addSpaceTimePoint(0.0, p: gmap(flipY(newPoint, axisHeight: h), fromRect: fromRect, toRect: toRect))
 		}
 		
-		return pl
+		return trajectory
 	}
 	
 	func mapFromabTocd(val : CGFloat, a : CGFloat, b: CGFloat, c : CGFloat, d : CGFloat) -> CGFloat {
@@ -180,8 +188,16 @@ class SolarDayViewController: UIViewController, UIGestureRecognizerDelegate {
 	}
 	
 	func moveSun(toXValue : CGFloat) {
-		sunView.center = pl.getNearestPoint(toXValue)
 		
+		let nearestPoint = sunTrajectory.getNearestPointByX(toXValue)
+		sunView.center = nearestPoint.p
+		infoPane.center = CGPointMake(nearestPoint.p.x, nearestPoint.p.y - IPANE_HEIGHT)
+		
+		let x = String(format: "%.1f", Float(nearestPoint.p.x))
+		let y = String(format: "%.1f", Float(nearestPoint.p.y))
+		
+		infoPane.positionLabel.text = "Alt. (" + x + "\u{B0}N \nAz. " + y + "\u{B0}E)"
+		//timeLabel.text =
 	}
 
 	override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {

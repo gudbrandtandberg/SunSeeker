@@ -9,30 +9,36 @@
 import Foundation
 import UIKit
 
-struct PointList {
+typealias SpaceTimePoint = (t: CGFloat,p: CGPoint)
+
+struct SunTrajectory {
 	
+	var times : [CGFloat]
 	var points : [CGPoint]
 	var count : Int
 	var bezierPath : UIBezierPath
 	
 	init() {
+		times = []
 		points = []
 		count = 0
 		bezierPath = UIBezierPath()
 	}
 	
-	mutating func addPoint(p: CGPoint) {
+	mutating func addSpaceTimePoint(t: CGFloat, p: CGPoint) {
 		
 		self.points.append(p)
+		self.times.append(t)
+		
 		(count == 0) ? bezierPath.moveToPoint(p) : bezierPath.addLineToPoint(p)
 
 		self.count++
 	}
 	
-	func getNearestPoint(x: CGFloat) -> CGPoint {
+	func getNearestPointByX(x: CGFloat) -> SpaceTimePoint {
 		
-		var index = -1
-		var lowest = 10000.0 as CGFloat
+		var index = 0
+		var lowest : CGFloat = 10000.0
 		
 		for point in points {
 			var diff = abs(x - point.x)
@@ -41,19 +47,18 @@ struct PointList {
 				index++
 			}
 		}
-		return points[index]
+		
+		return (times[index-1], points[index-1])
 	}
 	
-//	func toUIBezierPath() -> UIBezierPath {
-//		return bezierPath
-//	}
-	
-	subscript(index: Int) -> CGPoint { //should check bounds?
-		get {
-			return points[index]
+	subscript(index: Int) -> SpaceTimePoint { //should check bounds?
+		get {if (index > count){println("Index out of bounds"); exit(1)}
+			else {
+				return (times[index], points[index])
+			}
 		}
 		set(newValue) {
-			points[index] = newValue
+			(times[index], points[index]) = newValue
 		}
 	}
 	

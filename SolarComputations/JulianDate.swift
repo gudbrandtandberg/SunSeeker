@@ -30,10 +30,17 @@ public struct JulianDate {
 	var JD : Double = 0.0
 	var fractionalDay : FractionalDay = FractionalDay()
 	
+	var  date : NSDate = NSDate()
+	
 	public init() {}
+	
+	public init(fracDay : Double) {
+		self.fractionalDay = FractionalDay(fractionalValue: fracDay)
+	}
 	
 	public init(date : NSDate) {
 		
+		self.date = date
 		//get initial guess for julian day
 		let dateFormatter = NSDateFormatter()
 		dateFormatter.timeZone = NSTimeZone(name: "UTC")
@@ -49,8 +56,6 @@ public struct JulianDate {
 		dateFormatter.dateFormat = "s"
 		var UTCSeconds = dateFormatter.stringFromDate(date).toInt()!
 		
-
-		
 		switch (UTCHour) {
 		case let h where ((0 <= h) && (h < 12)) : //before midday
 			JDN -= 1
@@ -64,9 +69,5 @@ public struct JulianDate {
 		
 		JD = Double(JDN) + fractionalDay.fractionalValue
 	}
-	
+
 }
-
-
-
-
