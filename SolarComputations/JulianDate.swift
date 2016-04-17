@@ -34,7 +34,16 @@ public struct JulianDate {
 	
 	public init() {}
 	
-	public init(fracDay : Double) {
+	public init(JD: Double) {
+		self.JD = JD
+		
+		//needs setting:
+//		self.fractionalDay =
+//		self.JDN =
+//		self.date =
+	}
+	
+	public init(fracDay : Double) { //no good
 		self.fractionalDay = FractionalDay(fractionalValue: fracDay)
 	}
 	

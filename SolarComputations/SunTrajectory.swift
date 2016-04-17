@@ -9,11 +9,11 @@
 import Foundation
 import UIKit
 
-typealias SpaceTimePoint = (t: CGFloat,p: CGPoint)
+typealias SpaceTimePoint = (t: JulianDate, p: CGPoint)
 
 struct SunTrajectory {
 	
-	var times : [CGFloat]
+	var times : [JulianDate]
 	var points : [CGPoint]
 	var count : Int
 	var bezierPath : UIBezierPath
@@ -25,7 +25,7 @@ struct SunTrajectory {
 		bezierPath = UIBezierPath()
 	}
 	
-	mutating func addSpaceTimePoint(t: CGFloat, p: CGPoint) {
+	mutating func addSpaceTimePoint(t: JulianDate, p: CGPoint) {
 		
 		self.points.append(p)
 		self.times.append(t)
@@ -35,7 +35,7 @@ struct SunTrajectory {
 		self.count++
 	}
 	
-	func getNearestPointByX(x: CGFloat) -> SpaceTimePoint {
+	func getNearestPointByX(x: CGFloat) -> (stPoint: SpaceTimePoint, index : Int) {
 		
 		var index = 0
 		var lowest : CGFloat = 10000.0
@@ -48,7 +48,12 @@ struct SunTrajectory {
 			}
 		}
 		
-		return (times[index-1], points[index-1])
+		return ((times[index-1], points[index-1]), (index-1))
+	}
+	
+	func getNearestPointByDate(d: JulianDate) -> SpaceTimePoint {
+		
+		return (d, CGPointZero)
 	}
 	
 	subscript(index: Int) -> SpaceTimePoint { //should check bounds?

@@ -1,6 +1,5 @@
 import UIKit
 import Foundation
-import SolarComputations
 import CoreLocation
 
 ///////////////////////// TESTS /////////////////////////////////
@@ -35,39 +34,6 @@ import CoreLocation
 // (0 180) -> (y, y + h)
 //
 // (-180, 180) -> (x, x + w)   //x
-
-// formula
-//	(a, b) to (d, c)
-//	f(x) = (x-a)/(b-a) * c + (x-b)/(a-b) * d
-
-// (value - a)*(d-c)/(b-c) + c
-
-
-func mapFromabTocd(val : CGFloat, a : CGFloat, b: CGFloat, c : CGFloat, d : CGFloat) -> CGFloat {
-	
-//	(val - A)*(b-a)/(B-A) + a
-//  val - a) * (d-c)/(b-a) + c
-	return (val-a)*(d-c)/(b-a) + c
-	
-}
-
-
-
-func gmap(point : CGPoint, #fromRect : CGRect, #toRect : CGRect) -> CGPoint {
-	
-	var x : CGFloat = mapFromabTocd(point.x, fromRect.origin.x, fromRect.origin.x + fromRect.size.width, toRect.origin.x, toRect.origin.x + toRect.size.width)
-	
-	var y = mapFromabTocd(point.y, fromRect.origin.y, fromRect.origin.y + fromRect.size.height, toRect.origin.y, toRect.origin.y + toRect.size.height)
-	
-	return CGPointMake(x, y);
-}
-
-let rect = CGRectMake(-180, -45, 360, 90)
-let otherRect = CGRectMake(16, 97, 568, 379)
-
-mapFromabTocd(45, 45, 135, 16, 16 + 379)
-
-gmap(CGPointMake(0, 0), fromRect: rect, toRect: otherRect)
 
 
 

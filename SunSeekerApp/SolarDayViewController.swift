@@ -9,10 +9,27 @@
 import UIKit
 import CoreLocation
 
-let SUNSIZE : CGFloat = 70.0
-let IPANE_WIDTH : CGFloat = 140.0
-let IPANE_HEIGHT : CGFloat = 45.0
+enum DatePickState {
+	
+	case pressToPick, pressToSet
+	
+	mutating func next() {
+		switch self {
+		case .pressToPick:
+			self = .pressToSet
+			break;
+		case .pressToSet:
+			self = .pressToPick
+		}
+	}
+}
 
+
+let SUNSIZE : CGFloat = 70.0
+let SIDEBUFFER : CGFloat = 30
+let TOPBUFFER : CGFloat = 30
+let DATEPICKERTAG = 0
+let TIMEPICKERTAG = 1
 
 /*
 * Beautifuly displays the trajectory and position of the sun for a given day
@@ -20,36 +37,39 @@ let IPANE_HEIGHT : CGFloat = 45.0
 *
 */
 
-class SolarDayViewController: UIViewController, UIGestureRecognizerDelegate {
+class SolarDayViewController: UIViewController, UIGestureRecognizerDelegate, UIPickerViewDelegate {
 
 	@IBOutlet weak var dateTitleLabel: UILabel!
 	@IBOutlet weak var sunSpaceView: UIView!
 	@IBOutlet weak var grassView: UIView!
 	
+	@IBOutlet weak var theDatePicker: SSDatePicker!
+	
+	@IBOutlet weak var mainButton: UIButton!
+	
 	let sunView = UIImageView(image: UIImage(named: "sun.png"))
 	let yellow = UIColor(red: 0.0, green: 1.0, blue: 1.0, alpha: 1.0)
 	let infoPane: InfoPaneView
-
+	let spc : SunCalculator
 	var sunTrajectory = SunTrajectory()
-	var t = [NSDate]()
+	var dpState = DatePickState.pressToPick
 	
 	let dateFormatter : NSDateFormatter = NSDateFormatter()
 	
 	var dateToDisplay : NSDate = NSDate() {
 		willSet(newValue) {
-			dateTitleLabel.text = dateFormatter.stringFromDate(newValue)
 		}
-		didSet {
-
+		didSet (newValue) {
+			dateTitleLabel.text = dateFormatter.stringFromDate(newValue)
 		}
 	}
 
-	var xPositionOfSun : CGFloat = (0.0 as CGFloat) {
+	var xPositionOfSun : CGFloat = 0.0 {
 		willSet(newValue) {
-			moveSun(newValue)
+//			moveSun(newValue)
 		}
-		didSet {
-			
+		didSet (newValue){
+			moveSun(newValue)
 		}
 	}
 	
@@ -61,16 +81,22 @@ class SolarDayViewController: UIViewController, UIGestureRecognizerDelegate {
 
 		infoPane = InfoPaneView(frame: CGRectMake(0, 0, IPANE_WIDTH, IPANE_HEIGHT))
 		
-		super.init(coder: aDecoder)
-		
-		//trenger SolarComputer objekt:
 		let kampotLocation = CLLocation(latitude: 10.7412, longitude: 104.1931)
 		
-		let spc = SunLocationCalculator(location: kampotLocation, julianDate: JulianDate(date: dateToDisplay))
+		spc = SunCalculator(location: kampotLocation, julianDate: JulianDate(date: dateToDisplay))
+		
+		super.init(coder: aDecoder)
+		
+		
+		//trenger SolarComputer objekt:
+		
+
+		
+		
 		
 		//fill pl and t array with points from sunrise to sunset with preset granularity
 		
-		//pl = spc.positions //pl = [(x1, y1), (x2, y2), ... (xn, yn)] [CGPoint]
+		//pl = spc.trajectories[0].positions //points = [(x1, y1), (x2, y2), ... (xn, yn)] [CGPoint]
 		//t = spc.times //t = [t1, t2, ..., tn] [NSDate]
 		
 		//spc should also have properties nowPos : CGPoint and nowTime : NSDate
@@ -81,6 +107,9 @@ class SolarDayViewController: UIViewController, UIGestureRecognizerDelegate {
 		super.viewDidLoad()
 		dateTitleLabel.text = dateFormatter.stringFromDate(dateToDisplay) //simpler
 	
+		//cofigure pickers
+		
+		
 		
 		view.addSubview(infoPane)
 	}
@@ -91,10 +120,11 @@ class SolarDayViewController: UIViewController, UIGestureRecognizerDelegate {
 	
 	override func viewDidLayoutSubviews() {
 		
-		//should instead map data from pl to sunSpace rect
-		//then add the sun and the path of the sun
+		sunTrajectory =  mapTrajectory(spc.trajectories[0],
+			fromRect: spc.coordinateRect,
+			toRect: sunSpaceView.frame)
 		
-		sunTrajectory = generateSinePointList()
+		fadeOutDatePicker()
 		
 		//only if path exists!
 		drawPath()
@@ -109,13 +139,11 @@ class SolarDayViewController: UIViewController, UIGestureRecognizerDelegate {
 		
 		self.view.addSubview(sunView)
 
-
-
 	}
 	
 	func drawPath() {
 		
-		let l = CAShapeLayer()
+		let l = CAShapeLayer() //perhaps should be var
 		l.path = sunTrajectory.bezierPath.CGPath
 		l.fillColor = UIColor.clearColor().CGColor
 		l.strokeColor = yellow.CGColor
@@ -132,45 +160,20 @@ class SolarDayViewController: UIViewController, UIGestureRecognizerDelegate {
 		return CGPointMake(point.x, axisHeight - point.y)
 	}
 	
-	func generateSinePointList() -> SunTrajectory {
+	func mapTrajectory(trajectory : SunTrajectory, fromRect : CGRect, toRect : CGRect) -> SunTrajectory {
 		
-		let toRect = sunSpaceView.frame
-		
-		var trajectory = SunTrajectory()
+		var mappedTrajectory = SunTrajectory()
 		
 		var pl = [CGPoint]()
 		var t = [CGFloat]()
 		
 		var i : Int
 		
-		//-90*sin((pi*(x - 180)/360))
-		//example values..
-		let x0 = CGFloat(0.0)
-		let w = CGFloat(180.0)
-		let xn = CGFloat(180.0)
-
-		let y0 = CGFloat(0.0)
-		let h = CGFloat(90.0)
-		let yn = CGFloat(90.0)
-		
-		let fromRect = CGRectMake(x0, y0, w, h)
-		
-		let numPoints = 12 * 60 //onc sample a minute
-		
-		let dx = w / CGFloat(numPoints-1)
-		
-		for i in 1...numPoints {
-		
-			var x = x0 + CGFloat(i-1) * dx
-			let arg = CGFloat(M_PI) * x / w
-			let y = h * sin(arg)
-			
-			let newPoint = CGPointMake(x, y)
-			
-			trajectory.addSpaceTimePoint(0.0, p: gmap(flipY(newPoint, axisHeight: h), fromRect: fromRect, toRect: toRect))
+		for i in 1...trajectory.count {
+			mappedTrajectory.addSpaceTimePoint(trajectory.times[i-1], p: gmap(flipY(trajectory.points[i-1], axisHeight: fromRect.size.height), fromRect: fromRect, toRect: toRect))
 		}
 		
-		return trajectory
+		return mappedTrajectory
 	}
 	
 	func mapFromabTocd(val : CGFloat, a : CGFloat, b: CGFloat, c : CGFloat, d : CGFloat) -> CGFloat {
@@ -189,17 +192,44 @@ class SolarDayViewController: UIViewController, UIGestureRecognizerDelegate {
 	
 	func moveSun(toXValue : CGFloat) {
 		
-		let nearestPoint = sunTrajectory.getNearestPointByX(toXValue)
+		var (nearestPoint, ind) = sunTrajectory.getNearestPointByX(toXValue)
+		
 		sunView.center = nearestPoint.p
-		infoPane.center = CGPointMake(nearestPoint.p.x, nearestPoint.p.y - IPANE_HEIGHT)
 		
-		let x = String(format: "%.1f", Float(nearestPoint.p.x))
-		let y = String(format: "%.1f", Float(nearestPoint.p.y))
+		infoPane.center = CGPointMake(nearestPoint.p.x, nearestPoint.p.y - IPANE_HEIGHT / 1.33)
 		
-		infoPane.positionLabel.text = "Alt. (" + x + "\u{B0}N \nAz. " + y + "\u{B0}E)"
-		//timeLabel.text =
+		let x = String(format: "%.1f", Float(spc.trajectories[0][ind].p.x ))
+		let y = String(format: "%.1f", Float(spc.trajectories[0][ind].p.y))
+		
+		infoPane.positionLabel.text = "Alt. " + y + "\u{B0}N \nAz. " + x + "\u{B0}E"
+		
+		dateTitleLabel.text = dateFormatter.stringFromDate(nearestPoint.t.date)
+		//dateToDisplay = nearestPoint.t.date //does not work! property observers...
+	
 	}
 
+	@IBAction func didPressMainButton(sender: UIButton) {
+		
+		switch dpState {
+			case .pressToPick:
+				fadeInDatePicker()
+			case .pressToSet:
+				dateToDisplay = theDatePicker.date
+			fadeOutDatePicker()
+		}
+		dpState.next()
+		
+	}
+
+	func fadeOutDatePicker() {
+		theDatePicker.layer.opacity = 0.0
+		dateTitleLabel.layer.opacity = 1.0
+	}
+	func fadeInDatePicker() {
+		theDatePicker.layer.opacity = 1.0
+		dateTitleLabel.layer.opacity = 0.0
+	}
+	
 	override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
 		for touch in touches {
 			
@@ -216,5 +246,10 @@ class SolarDayViewController: UIViewController, UIGestureRecognizerDelegate {
 		xPositionOfSun = touch.x
 		
 	}
+	
+	//#pragma mark PickerView functions
+	
+
+	
 }
 

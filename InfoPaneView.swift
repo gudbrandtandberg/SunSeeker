@@ -10,6 +10,9 @@ import UIKit
 
 let FONTSIZE :CGFloat = 18.0
 let BORDERWIDTH : CGFloat = 3.0
+let PADDING : CGFloat = 3
+let IPANE_WIDTH : CGFloat = 120.0
+let IPANE_HEIGHT : CGFloat = 65.0
 
 class InfoPaneView: UIView {
 
@@ -18,13 +21,15 @@ class InfoPaneView: UIView {
 	override init(frame: CGRect) {
 		
 		
-		positionLabel = UILabel(frame: CGRectMake(frame.origin.x + BORDERWIDTH, frame.origin.y + BORDERWIDTH, frame.size.width, 2*FONTSIZE))
-		
-		positionLabel.numberOfLines = 2
-		positionLabel.font = UIFont.preferredFontForTextStyle(UIFontTextStyleCaption1)
+		positionLabel = UILabel(frame: CGRectMake(frame.origin.x + BORDERWIDTH + PADDING, frame.origin.y + BORDERWIDTH, frame.size.width - 2*BORDERWIDTH - 2*PADDING, frame.size.height -  2 * BORDERWIDTH))
+		positionLabel.lineBreakMode = NSLineBreakMode.ByWordWrapping // or NSLineBreakMode.ByWordWrapping
+		positionLabel.numberOfLines = 0
+		positionLabel.font = UIFont(name: "Helvetida", size: FONTSIZE)
+		positionLabel.textColor = UIColor.whiteColor()
+		positionLabel.textAlignment = NSTextAlignment.Center
+
 		
 		super.init(frame: frame)
-		
 		
 		backgroundColor = UIColor(red: 0.0, green: 153.0/255, blue: 204.0/255, alpha: 1.0)
 		

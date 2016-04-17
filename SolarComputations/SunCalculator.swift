@@ -10,7 +10,63 @@ import Foundation
 import CoreLocation
 import UIKit
 
-public class SunLocationCalculator {
+let x0 = CGFloat(0.0)
+let w = CGFloat(180.0)
+let xn = CGFloat(180.0)
+
+let y0 = CGFloat(0.0)
+let h = CGFloat(90.0)
+let yn = CGFloat(90.0)
+
+func generateSinePointList() -> SunTrajectory {
+	
+	let now = JulianDate(date: NSDate())
+	
+	let formatter = NSDateFormatter()
+	formatter.dateFormat = "dd MM yyyy HH:mm"
+	
+	let startDate = JulianDate(date: formatter.dateFromString("16 04 2016 05:55")!)
+	let endDate = JulianDate(date: formatter.dateFromString("16 04 2016 17:54")!)
+	
+	var trajectory = SunTrajectory()
+	var dates = [JulianDate]()
+	
+	var i : Int
+	
+	let numPoints = 12 * 60 //onc sample a minute
+	
+	let dx = w / CGFloat(numPoints-1)
+	
+	//let timeSpan = endDate.JD - startDate.JD
+	let timeSpan = Double(12*60*60)
+	let dt = timeSpan / Double(numPoints-1)
+	
+	for i in 1...numPoints {
+		//spatial point
+		var x = x0 + CGFloat(i-1) * dx
+		let arg = CGFloat(M_PI) * x / w
+		let y = h * sin(arg)
+		
+		let newPoint = CGPointMake(x, y)
+		
+		//temporal point
+		
+		var newDate = startDate.date.dateByAddingTimeInterval(Double(i) * dt)
+		var newJD = JulianDate(date: newDate)
+		
+		trajectory.addSpaceTimePoint(newJD , p: newPoint)
+	}
+	
+	return trajectory
+}
+
+
+
+public class SunCalculator {
+	
+	var coordinateRect = CGRectMake(x0, y0, w, h)
+	
+	var trajectories : [SunTrajectory]
 	
 	var observerLatitude : Angle
 	var observerLongitude : Angle
@@ -45,12 +101,14 @@ public class SunLocationCalculator {
 		observerLongitude = Angle(degrees: location.coordinate.longitude)
 		observerLatitude = Angle(degrees: location.coordinate.latitude)
 		self.julianDate = julianDate
+		self.trajectories = [generateSinePointList()]
 	}
 	
 	public init(location : CLLocation) {
 		observerLongitude = Angle(degrees: location.coordinate.longitude)
 		observerLatitude = Angle(degrees: location.coordinate.latitude)
 		self.julianDate = JulianDate()
+		trajectories = [generateSinePointList()]
 	}
 	
 	func meanAnomaly(julianDate : JulianDate) -> Angle {
@@ -117,6 +175,30 @@ public class SunLocationCalculator {
 		var J_rise = J_transit - hourAngle / 360
 		
 		return (dateFromJulianDate(J_rise), dateFromJulianDate(J_set))
+	}
+	
+	func dateFromJulianDate(jd: Double) -> NSDate {
+		
+		let fractionalDay = jd % 1
+		var JDN = Int(floor(jd))
+		var secondsToCorrect = secondsPerDay / 2
+		
+		if (fractionalDay <= 0.5) { //the JDN floor(jd) is correct
+			secondsToCorrect += fractionalDay * secondsPerDay
+			
+		} else { //the JDN floor(jd) is one day too early
+			JDN += 1
+			secondsToCorrect -= (1 - fractionalDay) * secondsPerDay
+		}
+		
+		let JDNString = String(format: "%d", JDN)
+		let formatter = NSDateFormatter()
+		formatter.dateFormat = julianDateFormat
+		
+		var noonOnCorrectDay = formatter.dateFromString(JDNString)!
+		secondsToCorrect += currentTimezoneOffset
+		
+		return noonOnCorrectDay.dateByAddingTimeInterval(secondsToCorrect)
 	}
 	
 	public func getSunPosition(day : JulianDate) -> (Angle, Angle) {

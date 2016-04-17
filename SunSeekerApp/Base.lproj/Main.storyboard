@@ -24,45 +24,87 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GmS-cV-ubs" userLabel="SunSpaceView">
-                                <rect key="frame" x="16" y="76" width="704" height="288"/>
+                                <rect key="frame" x="67" y="139" width="602" height="224"/>
                                 <color key="backgroundColor" red="0.52941176469999995" green="0.80784313730000001" blue="0.98039215690000003" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cMo-kD-RML" userLabel="GrassView">
                                 <rect key="frame" x="0.0" y="364" width="736" height="50"/>
                                 <color key="backgroundColor" red="0.0" green="1" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
+                            <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="YXt-ni-rSX" customClass="SSDatePicker" customModule="SunSeekerApp" customModuleProvider="target">
+                                <rect key="frame" x="64" y="8" width="608" height="162"/>
+                                <date key="date" timeIntervalSinceReferenceDate="482471280.04421002">
+                                    <!--2016-04-16 03:48:00 +0000-->
+                                </date>
+                            </datePicker>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="udp-Sa-ySw">
+                                <rect key="frame" x="666" y="8" width="54" height="48"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="48" id="HgF-yj-o06"/>
+                                    <constraint firstAttribute="width" constant="54" id="oxx-1u-Pyq"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <state key="normal" title="SET">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="didPressMainButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="iD7-Lc-wfQ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.52941176470588236" green="0.80784313725490198" blue="0.98039215686274506" alpha="1" colorSpace="calibratedRGB"/>
                         <gestureRecognizers/>
                         <constraints>
-                            <constraint firstItem="61Y-bK-PfB" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="66q-3G-FRj"/>
+                            <constraint firstItem="udp-Sa-ySw" firstAttribute="height" secondItem="61Y-bK-PfB" secondAttribute="height" constant="12" id="3mA-qe-osc"/>
+                            <constraint firstItem="udp-Sa-ySw" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="4ne-oy-5SL"/>
+                            <constraint firstItem="61Y-bK-PfB" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="20" id="66q-3G-FRj"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="GmS-cV-ubs" secondAttribute="trailing" constant="51" id="6ci-DM-CeG"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="GmS-cV-ubs" secondAttribute="trailing" constant="51" id="BCa-yf-aby"/>
                             <constraint firstItem="GmS-cV-ubs" firstAttribute="leading" secondItem="61Y-bK-PfB" secondAttribute="leading" id="BPI-Fw-Qjd"/>
                             <constraint firstAttribute="bottom" secondItem="GmS-cV-ubs" secondAttribute="bottom" constant="124" id="Bor-q5-cdE"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="GmS-cV-ubs" secondAttribute="bottom" constant="50" id="Gbk-Kg-x58"/>
+                            <constraint firstItem="GmS-cV-ubs" firstAttribute="leading" secondItem="61Y-bK-PfB" secondAttribute="leading" id="H9W-jf-edd"/>
                             <constraint firstItem="GmS-cV-ubs" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="JCc-xg-29T"/>
+                            <constraint firstItem="GmS-cV-ubs" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="51" id="T6b-aM-3CN"/>
+                            <constraint firstItem="GmS-cV-ubs" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="51" id="UNS-E1-rRb"/>
+                            <constraint firstItem="GmS-cV-ubs" firstAttribute="top" secondItem="61Y-bK-PfB" secondAttribute="bottom" constant="83" id="WgQ-QZ-XzS"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="GmS-cV-ubs" secondAttribute="bottom" constant="51" id="ZTX-5s-8ZI"/>
                             <constraint firstItem="GmS-cV-ubs" firstAttribute="top" secondItem="61Y-bK-PfB" secondAttribute="bottom" constant="20" id="a9Y-dD-ciP"/>
                             <constraint firstItem="61Y-bK-PfB" firstAttribute="trailing" secondItem="GmS-cV-ubs" secondAttribute="trailing" id="d8o-5D-DeD"/>
-                            <constraint firstItem="cMo-kD-RML" firstAttribute="top" secondItem="GmS-cV-ubs" secondAttribute="bottom" id="gNs-iu-jDo"/>
+                            <constraint firstItem="cMo-kD-RML" firstAttribute="top" secondItem="GmS-cV-ubs" secondAttribute="bottom" constant="1" id="gNs-iu-jDo"/>
                             <constraint firstItem="cMo-kD-RML" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="iNc-PR-7gU"/>
+                            <constraint firstItem="GmS-cV-ubs" firstAttribute="trailing" secondItem="61Y-bK-PfB" secondAttribute="trailing" id="mUL-pe-te2"/>
                             <constraint firstItem="cMo-kD-RML" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="nUZ-D3-aWd"/>
                             <constraint firstItem="cMo-kD-RML" firstAttribute="centerX" secondItem="GmS-cV-ubs" secondAttribute="centerX" id="oHd-qH-oiV"/>
+                            <constraint firstItem="udp-Sa-ySw" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="sq5-iu-6TJ"/>
                             <constraint firstItem="61Y-bK-PfB" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="yL6-d5-hAS"/>
+                            <constraint firstItem="GmS-cV-ubs" firstAttribute="centerX" secondItem="61Y-bK-PfB" secondAttribute="centerX" id="yXb-09-Dna"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
+                                <exclude reference="d8o-5D-DeD"/>
+                                <exclude reference="BPI-Fw-Qjd"/>
                                 <exclude reference="Bor-q5-cdE"/>
+                                <exclude reference="H9W-jf-edd"/>
+                                <exclude reference="JCc-xg-29T"/>
+                                <exclude reference="a9Y-dD-ciP"/>
+                                <exclude reference="mUL-pe-te2"/>
+                                <exclude reference="Gbk-Kg-x58"/>
                             </mask>
                         </variation>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="rBI-dX-xk1" appends="YES" id="A5N-eR-DhK"/>
                         </connections>
                     </view>
+                    <nil key="simulatedStatusBarMetrics"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
                         <outlet property="dateTitleLabel" destination="61Y-bK-PfB" id="xDW-qF-rsP"/>
                         <outlet property="grassView" destination="cMo-kD-RML" id="ku0-js-ydc"/>
+                        <outlet property="mainButton" destination="udp-Sa-ySw" id="Vg2-MJ-gMK"/>
                         <outlet property="sunSpaceView" destination="GmS-cV-ubs" id="0N8-Zj-SUP"/>
+                        <outlet property="theDatePicker" destination="YXt-ni-rSX" id="LDF-0z-FJ0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -72,7 +114,7 @@
                     </connections>
                 </panGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-257" y="122"/>
+            <point key="canvasLocation" x="-440" y="110"/>
         </scene>
     </scenes>
 </document>

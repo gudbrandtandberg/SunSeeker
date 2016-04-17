@@ -16,9 +16,10 @@
 		4244C62E1CB9059500FB39FF /* sun.png in Resources */ = {isa = PBXBuildFile; fileRef = 4244C62D1CB9059400FB39FF /* sun.png */; };
 		42B961F71CBCFCBE00E7413B /* SunTrajectory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42B961F61CBCFCBE00E7413B /* SunTrajectory.swift */; };
 		42B961F91CBDF1A500E7413B /* InfoPaneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42B961F81CBDF1A500E7413B /* InfoPaneView.swift */; };
+		42BF62DE1CC21D640002DD20 /* SSDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42BF62DD1CC21D640002DD20 /* SSDatePicker.swift */; };
 		42CC3EFD1CBA48C5008CFEDA /* Angle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42CC3EF71CBA48C5008CFEDA /* Angle.swift */; };
 		42CC3EFF1CBA48C5008CFEDA /* JulianDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42CC3EF91CBA48C5008CFEDA /* JulianDate.swift */; };
-		42CC3F001CBA48C5008CFEDA /* SunPositionCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42CC3EFA1CBA48C5008CFEDA /* SunPositionCalculator.swift */; };
+		42CC3F001CBA48C5008CFEDA /* SunCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42CC3EFA1CBA48C5008CFEDA /* SunCalculator.swift */; };
 		42CC3F011CBA48C5008CFEDA /* FractionalDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42CC3EFB1CBA48C5008CFEDA /* FractionalDay.swift */; };
 /* End PBXBuildFile section */
 
@@ -46,9 +47,10 @@
 		4244C62D1CB9059400FB39FF /* sun.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sun.png; sourceTree = "<group>"; };
 		42B961F61CBCFCBE00E7413B /* SunTrajectory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SunTrajectory.swift; path = SolarComputations/SunTrajectory.swift; sourceTree = "<group>"; };
 		42B961F81CBDF1A500E7413B /* InfoPaneView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InfoPaneView.swift; path = ../InfoPaneView.swift; sourceTree = "<group>"; };
+		42BF62DD1CC21D640002DD20 /* SSDatePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SSDatePicker.swift; path = SunSeekerApp/SSDatePicker.swift; sourceTree = "<group>"; };
 		42CC3EF71CBA48C5008CFEDA /* Angle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Angle.swift; path = SolarComputations/Angle.swift; sourceTree = "<group>"; };
 		42CC3EF91CBA48C5008CFEDA /* JulianDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JulianDate.swift; path = SolarComputations/JulianDate.swift; sourceTree = "<group>"; };
-		42CC3EFA1CBA48C5008CFEDA /* SunPositionCalculator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SunPositionCalculator.swift; path = SolarComputations/SunPositionCalculator.swift; sourceTree = "<group>"; };
+		42CC3EFA1CBA48C5008CFEDA /* SunCalculator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SunCalculator.swift; path = SolarComputations/SunCalculator.swift; sourceTree = "<group>"; };
 		42CC3EFB1CBA48C5008CFEDA /* FractionalDay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FractionalDay.swift; path = SolarComputations/FractionalDay.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -129,7 +131,7 @@
 		42CC3EFC1CBA48C5008CFEDA /* Solar Computations */ = {
 			isa = PBXGroup;
 			children = (
-				42CC3EFA1CBA48C5008CFEDA /* SunPositionCalculator.swift */,
+				42CC3EFA1CBA48C5008CFEDA /* SunCalculator.swift */,
 				42CC3F021CBA497E008CFEDA /* Useful Objects */,
 			);
 			name = "Solar Computations";
@@ -168,6 +170,7 @@
 			isa = PBXGroup;
 			children = (
 				4244C5F31CB8F16C00FB39FF /* Main.storyboard */,
+				42BF62DD1CC21D640002DD20 /* SSDatePicker.swift */,
 				4244C5F61CB8F16C00FB39FF /* Images.xcassets */,
 				4244C5F81CB8F16C00FB39FF /* LaunchScreen.xib */,
 			);
@@ -278,11 +281,12 @@
 			files = (
 				42B961F91CBDF1A500E7413B /* InfoPaneView.swift in Sources */,
 				42B961F71CBCFCBE00E7413B /* SunTrajectory.swift in Sources */,
+				42BF62DE1CC21D640002DD20 /* SSDatePicker.swift in Sources */,
 				4244C5F21CB8F16C00FB39FF /* SolarDayViewController.swift in Sources */,
 				42CC3EFD1CBA48C5008CFEDA /* Angle.swift in Sources */,
 				4244C5F01CB8F16C00FB39FF /* AppDelegate.swift in Sources */,
 				42CC3EFF1CBA48C5008CFEDA /* JulianDate.swift in Sources */,
-				42CC3F001CBA48C5008CFEDA /* SunPositionCalculator.swift in Sources */,
+				42CC3F001CBA48C5008CFEDA /* SunCalculator.swift in Sources */,
 				42CC3F011CBA48C5008CFEDA /* FractionalDay.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
